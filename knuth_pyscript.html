@@ -1,41 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyScript Example</title>
-    <!-- Include PyScript -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stack and Queue Example</title>
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
-      <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
-</head>
-<body>
-    <h1>PyScript Example</h1>
-    <p>Enter a number to calculate its square:</p>
-    <input type="number" id="inputNumber" placeholder="Enter a number">
-    <button id="calculateButton">Calculate</button>
-    <p id="result"></p>
-
-    <!-- PyScript Code -->
-    <py-script>
-from js import document
-
-def calculate_square(event):
-    input_element = document.getElementById("inputNumber")
-    result_element = document.getElementById("result")
+    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+    <style type="text/css">
+      table { display: inline; border-collapse: collapse; }
+      td { border: solid 1px; }
+    </style>
+  </head>
+  <body>
+    <p>Appuyer sur <em>s</em> pour démarrer et sur <em>espace</em> pour faire une étape.</p>
+    <p>
+      S: <table> <tr id="stack"> </tr> </table>
+      Q: <table> <tr id="queue"> </tr> </table>
+      e: <table> <tr id="e"> </tr> </table>
+    </p>
     
-    input_value = input_element.value
-    if input_value:
-        try:
-            number = float(input_value)
-            square = number ** 2
-            result_element.innerHTML = f"The square of {number} is {square}."
-        except ValueError:
-            result_element.innerHTML = "Please enter a valid number."
-    else:
-        result_element.innerHTML = "Input cannot be empty."
-
-# Attach the Python function to the button click event
-document.getElementById("calculateButton").addEventListener("click", calculate_square)
-    </py-script>
-</body>
+    <script type="py" src="main.py"></script>
+    <script type="text/javascript">
+      document.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+          pyscript.run("small_step()");
+        } else if (event.key === 's') {
+          pyscript.run("start([8,44,55,29,22,35,50,14,76])");
+        }
+      });
+    </script>
+  </body>
 </html>
