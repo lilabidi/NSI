@@ -4,58 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyScript Example</title>
-    <!-- Include PyScript -->
+    <!-- PyScript -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
-      <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Fond blanc */
-            color: #000000;           /* Texte noir */
-            text-align: center;
-            padding: 20px;
-        }
-        input, button {
-            font-size: 16px;
-            margin: 10px;
-        }
-        p#result {
-            margin-top: 20px;
-            font-weight: bold;
-            color: #007BFF; /* Texte bleu pour bien se distinguer */
-        }
-    </style>
+    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
 </head>
 <body>
-    <h1>PyScript Example</h1>
-    <p>Enter a number to calculate its square:</p>
+    <h1>Calculate Square</h1>
     <input type="number" id="inputNumber" placeholder="Enter a number">
     <button id="calculateButton">Calculate</button>
-    <p id="result">The result will appear here.</p>
+    <p id="result"></p>
 
-    <!-- PyScript Code -->
     <py-script>
 from js import document
-from pyscript import create_proxy
 
 def calculate_square(event):
-    input_element = document.getElementById("inputNumber")
-    result_element = document.getElementById("result")
-    
-    input_value = input_element.value
+    input_value = document.getElementById("inputNumber").value
     if input_value:
-        try:
-            number = float(input_value)
-            square = number ** 2
-            result_element.innerHTML = f"The square of {number} is {square}."
-        except ValueError:
-            result_element.innerHTML = "Please enter a valid number."
+        number = float(input_value)
+        square = number ** 2
+        document.getElementById("result").innerHTML = f"Square: {square}"
     else:
-        result_element.innerHTML = "Input cannot be empty."
+        document.getElementById("result").innerHTML = "Please enter a number."
 
-# Use create_proxy to keep the Python function reference alive
-proxy_function = create_proxy(calculate_square)
-document.getElementById("calculateButton").addEventListener("click", proxy_function)
+document.getElementById("calculateButton").addEventListener("click", calculate_square)
     </py-script>
 </body>
 </html>
