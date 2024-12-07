@@ -45,4 +45,17 @@ def calculate_square(event):
     input_value = input_element.value
     if input_value:
         try:
-           
+            number = float(input_value)
+            square = number ** 2
+            result_element.innerHTML = f"The square of {number} is {square}."
+        except ValueError:
+            result_element.innerHTML = "Please enter a valid number."
+    else:
+        result_element.innerHTML = "Input cannot be empty."
+
+# Use create_proxy to keep the Python function reference alive
+proxy_function = create_proxy(calculate_square)
+document.getElementById("calculateButton").addEventListener("click", proxy_function)
+    </py-script>
+</body>
+</html>
