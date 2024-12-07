@@ -1,4 +1,4 @@
-from pyscript import document, create_proxy
+from pyscript import document
 
 def calculate_square(event):
     input_value = document.querySelector("#inputNumber").value
@@ -13,9 +13,3 @@ def calculate_square(event):
             result_div.innerText = "Please enter a valid number."
     else:
         result_div.innerText = "Please enter a number."
-
-# Create a proxy for the event handler
-proxy = create_proxy(calculate_square)
-
-# Attach the proxy function to the button's click event
-document.querySelector("#calculateButton").addEventListener("click", proxy)
