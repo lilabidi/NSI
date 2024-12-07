@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyScript Example</title>
+    <!-- Include PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css">
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Fond blanc */
+            color: #000000;           /* Texte noir */
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            font-size: 16px;
+            margin: 10px;
+        }
+        p#result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #007BFF; /* Texte bleu pour bien se distinguer */
+        }
+    </style>
+</head>
+<body>
+    <h1>PyScript Example</h1>
+    <p>Enter a number to calculate its square:</p>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button id="calculateButton">Calculate</button>
+    <p id="result">The result will appear here.</p>
+
+    <!-- PyScript Code -->
+    <py-script>
+from js import document
+
+def calculate_square(event):
+    input_element = document.getElementById("inputNumber")
+    result_element = document.getElementById("result")
+    
+    input_value = input_element.value
+    if input_value:
+        try:
+            number = float(input_value)
+            square = number ** 2
+            result_element.innerHTML = f"The square of {number} is {square}."
+        except ValueError:
+            result_element.innerHTML = "Please enter a valid number."
+    else:
+        result_element.innerHTML = "Input cannot be empty."
+
+# Attach the Python function to the button click event
+document.getElementById("calculateButton").addEventListener("click", calculate_square)
+    </py-script>
+</body>
+</html>
