@@ -66,15 +66,18 @@
           for x in lst:
               push(Q, x)
 
-      # Pour démarrer la simulation avec les valeurs par défaut
+      # Attacher les événements une fois pour éviter le problème de proxy
+      def setup():
+          document.addEventListener('keydown', on_key_press)
+
       def on_key_press(event):
           if event.key == ' ':
               small_step()
           elif event.key == 's':
               start([8,44,55,29,22,35,50,14,76])
 
-      # Attacher l'événement de clavier pour interagir avec la simulation
-      document.addEventListener('keydown', on_key_press)
+      # Initial setup
+      setup()
     </script>
   </body>
 </html>
