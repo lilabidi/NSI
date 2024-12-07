@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyScript Example</title>
+    <!-- Include PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css">
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+    <h1>PyScript Example</h1>
+    <p>Enter a number to calculate its square:</p>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button onclick="calculateSquare()">Calculate</button>
+    <p id="result"></p>
+
+    <!-- PyScript Code -->
+    <py-script>
+from js import document
+
+def calculateSquare():
+    input_value = document.getElementById("inputNumber").value
+    if input_value:
+        try:
+            number = float(input_value)
+            square = number ** 2
+            document.getElementById("result").innerText = f"The square of {number} is {square}."
+        except ValueError:
+            document.getElementById("result").innerText = "Please enter a valid number."
+    else:
+        document.getElementById("result").innerText = "Input cannot be empty."
+    </py-script>
+</body>
+</html>
