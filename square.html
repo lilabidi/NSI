@@ -16,6 +16,7 @@
 
     <py-script>
 from js import document
+from pyscript import create_proxy
 
 def calculate_square(event):
     input_value = document.getElementById("inputNumber").value
@@ -26,7 +27,11 @@ def calculate_square(event):
     else:
         document.getElementById("result").innerHTML = "Please enter a number."
 
-document.getElementById("calculateButton").addEventListener("click", calculate_square)
+# Use create_proxy to maintain the function reference
+proxy_function = create_proxy(calculate_square)
+
+# Attach the proxy function to the button's click event
+document.getElementById("calculateButton").addEventListener("click", proxy_function)
     </py-script>
 </body>
 </html>
