@@ -1,37 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyScript Example</title>
-    <!-- PyScript -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
-</head>
-<body>
-    <h1>Calculate Square</h1>
-    <input type="number" id="inputNumber" placeholder="Enter a number">
-    <button id="calculateButton">Calculate</button>
-    <p id="result"></p>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>🦜 Polyglot - Piratical PyScript</title>
+      <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+      <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+  </head>
+  <body>
 
-    <py-script>
-from js import document
-from pyscript import create_proxy
+    <!-- TODO: Fill in our custom application code here... -->
 
-def calculate_square(event):
-    input_value = document.getElementById("inputNumber").value
-    if input_value:
-        number = float(input_value)
-        square = number ** 2
-        document.getElementById("result").innerHTML = f"Square: {square}"
-    else:
-        document.getElementById("result").innerHTML = "Please enter a number."
-
-# Use create_proxy to maintain the function reference
-proxy_function = create_proxy(calculate_square)
-
-# Attach the proxy function to the button's click event
-document.getElementById("calculateButton").addEventListener("click", proxy_function)
-    </py-script>
-</body>
+  </body>
 </html>
